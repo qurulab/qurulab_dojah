@@ -1,12 +1,12 @@
-import 'dart:convert';
-
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:location/location.dart';
+import 'dart:convert';
 import 'package:permission_handler/permission_handler.dart'
     hide PermissionStatus;
+import 'package:location/location.dart';
 
-class DojahWebViewScreen extends StatefulWidget {
+class WebviewScreen extends StatefulWidget {
   final String appId;
   final String publicKey;
   final String type;
@@ -18,7 +18,7 @@ class DojahWebViewScreen extends StatefulWidget {
   final Function(dynamic) success;
   final Function(dynamic) error;
   final Function(dynamic) close;
-  const DojahWebViewScreen({
+  const WebviewScreen({
     Key? key,
     required this.appId,
     required this.publicKey,
@@ -34,7 +34,7 @@ class DojahWebViewScreen extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<DojahWebViewScreen> createState() => _DojahWebViewScreenState();
+  State<WebviewScreen> createState() => _WebviewScreenState();
 }
 
 class Configuration {
@@ -115,6 +115,7 @@ class Config {
   bool? otp;
   bool? selfie;
 
+
   Config({this.bvn, this.nin, this.dl, this.mobile, this.otp, this.selfie});
 
   Config.fromJson(Map<String, dynamic> json) {
@@ -138,7 +139,7 @@ class Config {
   }
 }
 
-class _DojahWebViewScreenState extends State<DojahWebViewScreen> {
+class _WebviewScreenState extends State<WebviewScreen> {
   InAppWebViewController? _webViewController;
 
   InAppWebViewGroupOptions options = InAppWebViewGroupOptions(
@@ -166,6 +167,7 @@ class _DojahWebViewScreenState extends State<DojahWebViewScreen> {
     super.initState();
 
     initCameraPermissions();
+    
   }
 
   Future initCameraPermissions() async {
@@ -183,6 +185,7 @@ class _DojahWebViewScreenState extends State<DojahWebViewScreen> {
     Location location = Location();
 
     LocationData _locationData;
+
 
     _serviceEnabled = await location.serviceEnabled();
     if (!_serviceEnabled) {
@@ -256,7 +259,9 @@ class _DojahWebViewScreenState extends State<DojahWebViewScreen> {
     var needsCamera = config.selfie;
 
     if (needsCamera == true) {
-      initCameraPermissions();
+
+     initCameraPermissions();      
+     
     }
 
     var needsLocation =
@@ -359,3 +364,5 @@ class _DojahWebViewScreenState extends State<DojahWebViewScreen> {
     );
   }
 }
+
+
