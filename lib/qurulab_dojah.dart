@@ -1,7 +1,7 @@
 library flutter_dojah_financial;
 
 import 'package:flutter/material.dart';
-import 'package:flutter_dojah_financial/webview_screen.dart';
+import 'package:qurulab_dojah/dojah_webview_screen.dart';
 
 class DojahFinancial {
   final String appBarName;
