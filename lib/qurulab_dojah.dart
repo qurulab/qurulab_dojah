@@ -1,10 +1,9 @@
 library flutter_dojah_financial;
 
 import 'package:flutter/material.dart';
+import 'package:flutter_dojah_financial/webview_screen.dart';
 
-import 'dojah_webview_screen.dart';
-
-class QuruLabDojah {
+class DojahFinancial {
   final String appId;
   final String publicKey;
   final String type;
@@ -15,7 +14,9 @@ class QuruLabDojah {
   final Map<String, dynamic>? config;
   final Function(dynamic)? onCloseCallback;
 
-  QuruLabDojah({
+  
+
+  DojahFinancial({
     required this.appId,
     required this.publicKey,
     required this.type,
@@ -34,7 +35,7 @@ class QuruLabDojah {
     await Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => DojahWebViewScreen(
+        builder: (context) => WebviewScreen(
           appId: appId,
           publicKey: publicKey,
           type: type,
@@ -46,8 +47,9 @@ class QuruLabDojah {
           success: (result) {
             onSuccess!(result);
           },
+
           close: (close) {
-            onClose!(close);
+              onClose!(close);
           },
           error: (error) {
             onError!(error);
